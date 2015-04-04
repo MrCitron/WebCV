@@ -1,0 +1,406 @@
+* {margin:0;padding:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+
+/* ============== Reset css styles ==================== */
+body {
+    font:20px/30px 'Open Sans', Verdana, sans-serif;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.clearfix {
+    display: inline-block;
+}
+html[xmlns] .clearfix {
+    display: block;
+}
+* html .clearfix {
+    height: 1%;
+}
+a, 
+a:hover, 
+a:visited {
+    outline:none;
+}
+strong {
+    font-weight:700;
+}
+p {
+    margin:0 0 10px 0;
+}
+h2 {
+    text-align:center;
+    margin:0px auto;
+    padding-top:50px;
+    height:250px;
+}
+.wrap {
+    width:1140px;
+}
+.right {
+    float:right;
+    margin-left:80px;
+    text-align:left;
+}
+.left {
+    float:left;
+    margin-right:80px;
+    text-align:right;
+}
+.circle{
+    border-radius:100%;
+    border:5px solid #dfdfdf;
+}
+.orange {
+    color:#4B7383;
+}
+.wraptitle {
+    position:relative;
+    height:200px;
+}
+.anchor:before {
+    content:"";
+    display:block;
+    height:60px;
+    margin:-86px 0 0; 
+}
+
+/* ============== MAIN ==================== */
+#about-title, 
+#experience-title,
+#skills-title, 
+#contact-title {
+    height:100px;
+    color:white;
+    border-bottom:5px solid #4B7383;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+#about-title {
+    background-color:#51678e;
+}
+#experience-title {
+    background:#51678e;
+}
+#skills-title {
+    background:#51678e;
+}
+#contact-title {
+    background-color:#51678e;
+}
+#about {
+    margin:20px auto 0;
+    overflow:hidden;
+}
+#experience,
+#skills,
+#contact {
+    margin:80px auto 0;
+    overflow:hidden;
+}
+#about p {
+    margin-top:40px;
+}
+#contact p {
+    padding:0 20px;
+    width:50%;
+    margin:0 0 80px;
+}
+.contact-item {
+    width:100%;
+    float:left;
+    text-align:center;
+}
+#welcome {
+    margin:310px auto 80px;
+    text-align:center;
+    font-size:30px;
+    font-style: italic;
+    font-weight:600;
+    color:#666;
+}
+.skills-item {
+    width:33%;
+    float:left;
+    text-align:center;
+}
+.skills-item.last {
+    margin-right:0;
+}
+.skills-item img {
+    width:90%;
+}
+.skills-item .title {
+    font-weight:600;
+    color:#4B7383;
+}
+.skills-item .info {
+    font-weight:400;
+    color:#333;
+    font-size:14px;
+    line-height:23px;
+    margin-bottom:20px;
+}
+.readmore {
+    background:transparent url('../img/readmore.png') 0 0 no-repeat;
+    height:26px;
+    width:125px;
+    display:block;
+    font-size:13px;
+    color:#333;
+    text-decoration:none;
+    margin:0 auto;
+    padding:0 5px 0 30px;
+    line-height:26px;
+}
+.readmore:hover {
+    background:transparent url('../img/readmore-hover.png') 0 0 no-repeat;
+    color:#fff;
+}
+
+/* ============== Pop up box ==================== */
+.popupbox {
+    width:100%;
+    display: none;
+}
+.popupbox img {
+    max-width:50%;
+    margin-left:20px;
+}
+.popupbox h3 {font-weight:600;
+    font-size:24px;
+    color:#4B7383;
+    margin:0 0 20px 0;
+}
+.popupbox p {
+    font-size:14px;
+    line-height:22px;
+    font-weight:400;
+}
+
+
+/* ============== Header, Footer & Menu ==================== */
+.cbp-af-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #51678e;
+    z-index: 10000;
+    height: 220px;
+    -webkit-transition: height 0.3s;
+    -moz-transition: height 0.3s;
+    transition: height 0.3s;
+}
+.cbp-af-header .cbp-af-inner {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0;
+    position:relative;
+    height:100%;
+}
+.cbp-af-header h1 {
+	background-color: #FFFFFF;
+	border-radius: 100%;
+	color: #4B7383;
+	font-size: 28px;
+	font-weight: normal;
+	height: 220px;
+	left: 50%;
+	margin: 30px 0 0 -110px;
+	position: absolute;
+	text-align: center;
+	width: 220px;
+	padding-top:56px;
+	border:3px solid #4B7383;
+	line-height:50px;
+}
+.cbp-af-header nav {
+    left: 5%;
+    /*margin: 0 0 0 -35%;*/
+    position: fixed;
+    text-align: center;
+    top: 225px;
+    width: 95%;
+}
+.cbp-af-header nav .emptyMenu {
+    display: block;
+    float: left;
+    height: 30px;
+    width: 28%;
+}
+.cbp-af-header nav a {
+    color: #4B7383;
+    float: left;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    text-decoration: none;
+    width: 18%;
+}
+.cbp-af-header nav a:hover {
+    color: #333;
+}
+.cbp-af-header h1,
+.cbp-af-header nav {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.cbp-af-header.cbp-af-header-shrink {
+    height: 130px;
+}
+.cbp-af-header.cbp-af-header-shrink nav {
+	top:50px;
+}
+.cbp-af-header.cbp-af-header-shrink nav a {
+	color: #ffffff;
+}
+.cbp-af-header.cbp-af-header-shrink h1 {
+    font-size: 13px;
+	border-radius: 55px;
+	color: #4B7383;
+	font-weight: normal;
+	height: 110px;
+	left: 50%;
+	margin: 10px 0 0 -55px;
+	position: absolute;
+	text-align: center;
+	width: 110px;
+	padding-top:28px;
+	border:3px solid #4B7383;
+	line-height:25px;
+}
+a#pull {
+    display:none;
+}
+.footer {
+    margin:40px 0 10px;
+    text-align:center;
+    font-size:13px;
+    line-height:15px;
+}
+.footer a {
+    text-decoration: none;
+    color:#333;
+}
+
+/* ============== Parallax image backgounds ==================== */
+.js-background-1 {
+/*    background: transparent url('../img/montagnes.jpg') 0 0 no-repeat;
+    background-size: 100% 200%;
+*/}
+.js-background-2 {
+/*    background: transparent url('../img/robot_guitar.png') 10% 150px no-repeat;
+*/}
+.js-background-3 {
+/*    background: transparent url('../img/contact-bg.png') top center repeat;
+*/}
+ 
+/* ============== Responsive Media Queries ==================== */
+@media screen and (max-width: 1139px) {
+    .wrap {
+        width:100%;padding:0 20px;
+    }
+    .cbp-af-header .cbp-af-inner {
+        width: 100%;
+    }
+    .skills-item {
+        width:48%;
+        margin-right:2%;
+        margin-bottom:40px;
+    }
+}
+
+@media only screen and (max-width : 760px) {  
+    .left {
+        float:none;margin:0;
+    }
+    .right {
+        float:none;margin:0;
+    }
+    .cbp-af-header nav {
+        transition:none;
+        width:100%;
+        margin:0;
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        height:auto;
+        display:none;
+        box-shadow:2px 2px 3px #666;
+        background:#fff;
+        padding:0 15px 0 60px;
+    }
+    .cbp-af-header nav a {
+        margin:0;
+        display: none;
+        float:left !important; 
+        padding:0;
+        line-height:50px;
+        height:auto;
+        width:25%;
+        text-align: center;
+        font-size:9px;
+    }  
+    .cbp-af-header nav .emptyMenu {
+        display:none;
+    }
+    a#pull {
+        background: url('../img/nav-icon.png') 0 0 no-repeat;
+        display: block;
+        height: 40px;
+        left: 7px;
+        position: absolute;
+        top: 7px;
+        width: 40px;
+    }
+    a#pull:after {  
+        content:"";  
+        display: inline;  
+    }  
+    .cbp-af-header h1 {
+        height: 180px;
+        margin: 60px 0 0 -90px;
+        width: 180px;
+        padding-top: 47px;
+        font-size: 18px;
+    }
+    .cbp-af-header.cbp-af-header-shrink nav {
+        top:0;
+    }
+    .cbp-af-header.cbp-af-header-shrink nav a {
+        color:#4B7383;
+    }
+    #about {
+        text-align:center;
+    }
+    img.circle {
+        max-width:90%;
+    }
+    .skills-item {
+        width:100%;
+        margin-right:0;
+        float:none;
+    }
+    #contact p {
+        width:100%;text-align:left;
+    }
+}  
+.signature {
+    font-style: italic;
+    text-align: right;
+    margin-right: 48px;
+    font-size: 30px;
+}
+.legend {
+    margin-bottom: 3px;
+    color: #FFFFFF;
+}
