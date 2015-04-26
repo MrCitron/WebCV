@@ -93,11 +93,11 @@ h2 {
 #contact-title {
     background-color:#51678e;
 }
-#about {
+#about,
+#experience {
     margin:20px auto 0;
     overflow:hidden;
 }
-#experience,
 #skills,
 #contact {
     margin:80px auto 0;
