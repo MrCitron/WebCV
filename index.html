@@ -2,19 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="WebCV Metin OSMAN" />
-	<meta name="keywords" content="CV,Metin OSMAN,IT Consultant">
+	<meta name="keywords" content="CV,Metin OSMAN,IT Consultant" />
 	<meta name="author" content="Metin OSMAN" />
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,600italic' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,600italic'/>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/vis.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
 	<script type="text/javascript" src="js/modernizr.custom.js"></script>
 	<script type="text/javascript" src="js/classie.js"></script>
 	<script type="text/javascript" src="js/cbpAnimatedHeader.min.js"></script>
     <script type="text/javascript" src="js/Chart.js"></script>
+    <script type="text/javascript" src="js/vis.min.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
 	<title>Metin OSMAN</title>
 </head>
 <body>
@@ -43,7 +46,7 @@
     <div id="about" class="wrap">
 		<img class="circle right" src="img/metinosman.jpg" alt="Metin OSMAN" width="30%" />
 		<p class="orange"><strong>Bonjour,</strong></p>
-        <p>Ing&eacute;nieur dipl&ocirc;m&eacute; de l'UTBM,  je suis sp&eacute;cialis&eacute; autour des technologies Java/JEE, de la conception applicative jusqu'&agrave; la mise en production, en passant par le suivi de projet et la r&eacute;alisation &agrave; proprement dite des applications.</p>  
+        <p>Ing&eacute;nieur dipl&ocirc;mé de l'UTBM,  je suis sp&eacute;cialis&eacute; autour des technologies Java/JEE, de la conception applicative jusqu'&agrave; la mise en production, en passant par le suivi de projet et la r&eacute;alisation &agrave; proprement dite des applications.</p>  
         <p>Durant ces 9 dernières ann&eacute;es, j'ai eu l'occasion de participer à de nombreux projets, d'abord sur des applications Front, et plus r&eacute;cemment sur des middle-office grands publics avec de fortes contraintes en terme de QOS.<br /> Aujourd'hui, je travaille en tant qu'architecte dans le service VOD de Canal+.</p>
         <p>Je suis passionn&eacute; de musique (toutes les musiques) et je joue de la guitare depuis 20 ans.</p>
         <p>Enfin et surtout, j'ai la chance d'être le papa de deux merveilleux enfants !</p>
@@ -58,6 +61,7 @@
     </div>
 
     <div id="experience" class="wrap">
+        <div id="timeline"></div>
     </div>    
 	
     <a name="skills-link" class="anchor">&nbsp;</a>
@@ -182,9 +186,9 @@
 	    }  
 	});
 
-	$(document).ready(function() {
-		$('.fancybox').fancybox();
-	});
+    $(document).ready(function(e){
+        $('.fancybox').fancybox();
+    });
 
 	var $window = $(window);
 	var velocity = 0.5;
@@ -581,6 +585,203 @@
      
     })();
 
+</script>
+
+  <!-- load handlebars for templating, and create a template -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
+  <script id="item-template" type="text/x-handlebars-template">
+<span title="{{lieu}}">{{lieu}}</span>
+  </script>
+
+<script type="text/javascript">
+
+  // create a handlebars template
+  var template = Handlebars.compile(document.getElementById('item-template').innerHTML);
+
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('timeline');
+
+  var groups = [
+    {
+    id: 1,
+    content: 'Études'
+    },
+    {
+    id: 2,
+    content: 'Stages'
+    },
+    {
+    id: 3,
+    content: 'Vie active'
+    },
+    {
+    id: 4,
+    content: 'Formations'
+    }
+  ]
+
+  // Create a DataSet (allows two way data-binding)
+  var items = new vis.DataSet([
+    {
+        id: 1,
+        lieu: 'IUT d\'Orléans',
+        description: 'Diplôme Universitaire de Technologie en Génie Informatique',
+        start: '2000-09-01',
+        end: '2002-06-30',
+        group: 1
+    },
+    {
+        id: 2,
+        lieu: 'UTBM',
+        description: 'Diplôme d\'Ingénieur en Génie Informatique',
+        start: '2002-09-01',
+        end: '2006-01-31',
+        group: 1
+    },
+    {
+        id: 3,
+        lieu: 'LIFO',
+        description: 'Stage professionnel',
+        detail: 'Laboratoire d\'Informatique Fondamentale d\'Orléans - Réalisation d\'une interface en grille de calcul pour un prototype de bases de données parallèles sur grappe de PC',
+        start: '2003-09-01',
+        end: '2004-02-28',
+        group: 2
+    },
+    {
+        id: 4,
+        lieu: 'DAPM',
+        description: 'Projet de fin d\'études + CDD (1 mois)',
+        detail: 'DAPM SA, Genève - Développement d\'un logiciel de gestion de portefeuilles financiers',
+        start: '2005-02-01',
+        end: '2005-08-31',
+        group: 2
+    },
+    {
+        id: 5,
+        lieu: 'MTM',
+        description: 'CDD (4 mois)',
+        detail: 'Maison du temps et de la mobilité de Belfort-Montbéliard - Webmaster et responsable informatique',
+        start: '2005-10-01',
+        end: '2006-01-31',
+        group: 3
+    },
+    {
+        id: 6,
+        lieu: 'Capgemini Finance & Services',
+        description: 'CDI',
+        detail: 'Consultant Technologie & Architecture',
+        start: '2006-02-01',
+        end: '2010-08-31',
+        group: 3
+    },
+    {
+        id: 7,
+        lieu: 'Formation SOA',
+        detail: 'Formation SOA Websphere Process Server Websphere Integration Developer (IBM)',
+        start: '2006-04',
+        type: 'point',
+        group: 4
+    },
+    {
+        id: 8,
+        lieu: 'Urbanisme et Architecture Technique',
+        detail: 'Urbanisme et Architecture Technique (Capgemini Institut)',
+        start: '2008-04',
+        type: 'point',
+        group: 4
+    },
+    {
+        id: 9,
+        lieu: 'Outils de communication du consultant',
+        detail: 'Outils de communication du consultant (Académie Capgemini)',
+        start: '2009-11',
+        type: 'point',
+        group: 4
+    },
+    {
+        id: 10,
+        lieu: 'Les fondamentaux de la banque',
+        detail: 'Les fondamentaux de la banque (Académie Capgemini)',
+        start: '2009-11',
+        type: 'point',
+        group: 4
+    },
+    {
+        id: 11,
+        lieu: 'Objet Direct',
+        description: 'CDI',
+        detail: 'Consultant Java/JEE',
+        start: '2010-09-01',
+        end: '2012-05-31',
+        group: 3
+    },
+     {
+        id: 12,
+        lieu: 'Entreprise Architect',
+        detail: 'Entreprise Architect (Objet Direct)',
+        start: '2010-09',
+        type: 'point',
+        group: 4
+    },
+    {
+        id: 13,
+        lieu: 'Hibernate',
+        detail: 'Hibernate (Objet Direct)',
+        start: '2011-03',
+        type: 'point',
+        group: 4
+    },
+    {
+        id: 14,
+        lieu: 'Scrum Master',
+        detail: 'Certification Scrum Master (Valtech Training)',
+        start: '2011-04',
+        type: 'point',
+        group: 4
+    },
+    {
+        id: 15,
+        lieu: 'Canal +',
+        description: 'CDI',
+        detail: 'Architecte plateforme VOD',
+        start: '2012-06-01',
+        end: new Date(),
+        group: 3
+    },
+    {
+        id: 16,
+        lieu: 'Scala',
+        detail: 'Principes de la programmation fonctionnelle avec Scala (EPFL)',
+        start: '2013-09',
+        type: 'point',
+        group: 4
+    },
+  ]);
+
+
+  function customOrder (a,b) {
+    // order by id
+    return a.id - b.id;
+  }
+
+  // Configuration for the Timeline
+  var options = {
+    order: customOrder,
+    template: template,
+    moveable: false,
+    timeAxis: {scale: 'year', step: 1},
+    end: moment().endOf('year')
+  };
+
+  var timeline = new vis.Timeline(container);
+  timeline.setOptions(options);
+  timeline.setGroups(groups);
+  timeline.setItems(items);
+
+
+// timeline.on('select', function (properties) {
+//   alert('selected items: ' + properties.nodes);
+// });
 
 </script>
 </body>
