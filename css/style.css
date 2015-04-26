@@ -409,3 +409,6 @@ img.circle {
     margin-bottom: 3px;
     color: #FFFFFF;
 }
+    .vis.timeline .timeaxis .text {
+      font-size: 10px;
+    }
