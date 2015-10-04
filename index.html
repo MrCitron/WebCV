@@ -756,13 +756,13 @@
          timeline.setItems(timeline_items);
          
          $(document).ready(function() {
-           $('#timeline .item').each(function() {
+           $('#timeline .item.range,#timeline .item.point').each(function() {
                $(this).qtip({
                    overwrite: false,
                    prerender: true,
                    content: {
-                       title: nullOrField(this["timeline-item"], "lieu"),
-                       text: nullOrField(this["timeline-item"], "description") + "<BR>" + nullOrField(this["timeline-item"], "detail")
+                       title: this["timeline-item"].data.lieu,
+                       text: this["timeline-item"].data.description + "<BR>" + this["timeline-item"].data.detail
                    },
                    position: {
                        my: 'top left',
@@ -773,11 +773,7 @@
                });
            });
          });
-         
-         function nullOrField(obj, field) {
-           return typeof obj != 'undefined' ? obj.data[field] : ''
-         }
-         
+
       </script>
    </body>
 </html>
