@@ -7,7 +7,7 @@
       <meta name="keywords" content="CV,Metin OSMAN,IT Consultant" />
       <meta name="author" content="Metin OSMAN" />
       <link rel="shortcut icon" href="favicon.ico" />
-      <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,600italic'/>
+      <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,600italic" />
       <link rel="stylesheet" type="text/css" href="css/style.css" />
       <link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
       <link rel="stylesheet" type="text/css" href="css/vis.css" />
@@ -145,21 +145,21 @@
          Template design by Veselka for <a href="http://andreasviklund.com" target="_blank">andreasviklund.com</a> | Best hosted at <a href="http://www.svenskadomaner.se" target="_blank">www.svenskadomaner.se</a>
       </div>
       <script type="text/javascript">
-         $(function() {  
-             var pull        = $('#pull');  
-                 menu        = $('nav a');  
-                 // menuHeight  = menu.height();  
-           
-             $(pull).on('click', function(e) {  
-                 e.preventDefault();  
-                 menu.slideToggle();  
-             }); 
-         
-         }); 
-         $(window).resize(function(){  
-             var w = $(window).width();  
+         $(function() {
+             var pull        = $('#pull');
+                 menu        = $('nav a');
+                 // menuHeight  = menu.height();
+
+             $(pull).on('click', function(e) {
+                 e.preventDefault();
+                 menu.slideToggle();
+             });
+
+         });
+         $(window).resize(function(){
+             var w = $(window).width();
              if(w > 760) {
-                 if (menu.is(':hidden')) {  
+                 if (menu.is(':hidden')) {
                     menu.removeAttr('style');
                  }
                  timeline.setOptions({
@@ -168,21 +168,21 @@
              } else {
                  timeline.setOptions({
                    timeAxis: {scale: 'year', step: 5}
-                 }); 
-             } 
+                 });
+             }
          });
-         
+
          $(document).ready(function(e) {
              $('.fancybox').fancybox();
          });
-         
+
          var cbpAnimatedHeader = (function() {
-         
+
              var docElem = document.documentElement,
                  header = document.querySelector( '.cbp-af-header' ),
                  didScroll = false,
                  changeHeaderOn = 50;
-          
+
              function init() {
                  window.addEventListener( 'scroll', function( event ) {
                      if( !didScroll ) {
@@ -191,7 +191,7 @@
                      }
                  }, false );
              }
-          
+
              function scrollPage() {
                  var sy = scrollY();
                  if ( sy >= changeHeaderOn ) {
@@ -202,13 +202,13 @@
                  }
                  didScroll = false;
              }
-          
+
              function scrollY() {
                  return window.pageYOffset || docElem.scrollTop;
              }
-               
+
              init();
-          
+
          })();
       </script>
       <script type="text/javascript">
@@ -216,19 +216,19 @@
          Chart.defaults.global = {
              // Boolean - Whether to animate the chart
              animation: true,
-         
+
              // Number - Number of animation steps
              animationSteps: 60,
-         
+
              // String - Animation easing effect
              animationEasing: "easeOutQuart",
-         
+
              // Boolean - If we should show the scale at all
              showScale: true,
-         
+
              // Boolean - If we want to override with a hard coded scale
              scaleOverride: false,
-         
+
              // ** Required if scaleOverride is true **
              // Number - The number of steps in a hard coded scale
              scaleSteps: null,
@@ -236,162 +236,162 @@
              scaleStepWidth: null,
              // Number - The scale starting value
              scaleStartValue: null,
-         
+
              // String - Colour of the scale line
              scaleLineColor: "rgba(0,0,0,.1)",
-         
+
              // Number - Pixel width of the scale line
              scaleLineWidth: 1,
-         
+
              // Boolean - Whether to show labels on the scale
              scaleShowLabels: true,
-         
+
              // Interpolated JS string - can access value
              scaleLabel: "<%=value%>",
-         
+
              // Boolean - Whether the scale should stick to integers, not floats even if drawing space is there
              scaleIntegersOnly: true,
-         
+
              // Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
              scaleBeginAtZero: false,
-         
+
              // String - Scale label font declaration for the scale label
              scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-         
+
              // Number - Scale label font size in pixels
              scaleFontSize: 12,
-         
+
              // String - Scale label font weight style
              scaleFontStyle: "normal",
-         
+
              // String - Scale label font colour
              scaleFontColor: "#666",
-         
+
              // Boolean - whether or not the chart should be responsive and resize when the browser does.
              responsive: true,
-         
+
              // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
              maintainAspectRatio: true,
-         
+
              // Boolean - Determines whether to draw tooltips on the canvas or not
              showTooltips: true,
-         
+
              // Array - Array of string names to attach tooltip events
              tooltipEvents: ["mousemove", "touchstart", "touchmove"],
-         
+
              // String - Tooltip background colour
              tooltipFillColor: "rgba(0,0,0,0.8)",
-         
+
              // String - Tooltip label font declaration for the scale label
              tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-         
+
              // Number - Tooltip label font size in pixels
              tooltipFontSize: 14,
-         
+
              // String - Tooltip font weight style
              tooltipFontStyle: "normal",
-         
+
              // String - Tooltip label font colour
              tooltipFontColor: "#fff",
-         
+
              // String - Tooltip title font declaration for the scale label
              tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-         
+
              // Number - Tooltip title font size in pixels
              tooltipTitleFontSize: 14,
-         
+
              // String - Tooltip title font weight style
              tooltipTitleFontStyle: "bold",
-         
+
              // String - Tooltip title font colour
              tooltipTitleFontColor: "#fff",
-         
+
              // Number - pixel width of padding around tooltip text
              tooltipYPadding: 6,
-         
+
              // Number - pixel width of padding around tooltip text
              tooltipXPadding: 6,
-         
+
              // Number - Size of the caret on the tooltip
              tooltipCaretSize: 8,
-         
+
              // Number - Pixel radius of the tooltip border
              tooltipCornerRadius: 6,
-         
+
              // Number - Pixel offset from point x to tooltip edge
              tooltipXOffset: 10,
-         
+
              // String - Template string for single tooltips
              tooltipTemplate: "<%if (label){%><%=label%><%}%>",
-         
+
              // String - Template string for single tooltips
              multiTooltipTemplate: "<%= value %>",
-         
+
              // Function - Will fire on animation progression.
              onAnimationProgress: function(){},
-         
+
              // Function - Will fire on animation completion.
              onAnimationComplete: function(){}
          }
          // Get context with jQuery - using jQuery's .get() method.
-                 
+
          var radarOptions = {
              //Boolean - Whether to show lines for each scale point
              scaleShowLine : true,
-         
+
              //Boolean - Whether we show the angle lines out of the radar
              angleShowLineOut : true,
-         
+
              //Boolean - Whether to show labels on the scale
              scaleShowLabels : false,
-         
+
              // Boolean - Whether the scale should begin at zero
              scaleBeginAtZero : true,
-         
+
              //String - Colour of the angle line
              angleLineColor : "rgba(0,0,0,.1)",
-         
+
              //Number - Pixel width of the angle line
              angleLineWidth : 1,
-         
+
              //String - Point label font declaration
              pointLabelFontFamily : "'Arial'",
-         
+
              //String - Point label font weight
              pointLabelFontStyle : "normal",
-         
+
              //Number - Point label font size in pixels
              pointLabelFontSize : 10,
-         
+
              //String - Point label font colour
              pointLabelFontColor : "#666",
-         
+
              //Boolean - Whether to show a dot for each point
              pointDot : true,
-         
+
              //Number - Radius of each point dot in pixels
              pointDotRadius : 3,
-         
+
              //Number - Pixel width of point dot stroke
              pointDotStrokeWidth : 1,
-         
+
              //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
              pointHitDetectionRadius : 20,
-         
+
              //Boolean - Whether to show a stroke for datasets
              datasetStroke : true,
-         
+
              //Number - Pixel width of dataset stroke
              datasetStrokeWidth : 2,
-         
+
              //Boolean - Whether to fill the dataset with a colour
              datasetFill : true,
-         
+
              //String - A legend template
              legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-         
+
          }
-                 
+
          var rolesData = {
              labels: ["Architecte applicatif", "Scrum master", "Lead Tech", "Chef de projet", "Intégrateur", "Développeur", "DevOps"],
              datasets: [
@@ -409,7 +409,7 @@
          }
          var rolesCtx = $("#rolesChart").get(0).getContext("2d");
          var rolesChart = new Chart(rolesCtx).Radar(rolesData, radarOptions);
-         
+
          var languagesData = {
              labels: ["Java", "Scala", "Groovy", "Javascript", "C#", "SQL", "Python", "Bash", "CSS", "HTML", "XML", "XSD", "XSLT", "YAML"],
              datasets: [
@@ -427,7 +427,7 @@
          }
          var languagesCtx = $("#languagesChart").get(0).getContext("2d");
          var languagesChart = new Chart(languagesCtx).Radar(languagesData, radarOptions);
-                 
+
          var frontData = {
              labels: ["JSF", "HTML5/JS", "Play", "Grails"],
              datasets: [
@@ -445,7 +445,7 @@
          }
          var frontCtx = $("#frontChart").get(0).getContext("2d");
          var frontChart = new Chart(frontCtx).Radar(frontData, radarOptions);
-         
+
          var middleData = {
              labels: ["Java EE", "Spring", "Jersey", "IBatis", "Dozer", "Log4j", "Apache Commons", "Play", "Websphere", "Weskillsic", "JBoss", "Tomcat"],
              datasets: [
@@ -463,7 +463,7 @@
          }
          var middleCtx = $("#middleChart").get(0).getContext("2d");
          var middleChart = new Chart(middleCtx).Radar(middleData, radarOptions);
-         
+
          var datastoresData = {
              labels: ["Redis", "Memcached", "SolR", "Elastic Search", "Cassandra", "MongoDB", "Oracle", "MySQL", "Postgre", "MS SQL Server", "MS Access"],
              datasets: [
@@ -481,8 +481,8 @@
          }
          var datastoresCtx = $("#datastoresChart").get(0).getContext("2d");
          var datastoresChart = new Chart(datastoresCtx).Radar(datastoresData, radarOptions);
-         
-         
+
+
          var devtoolsData = {
              labels: ["SaltStack", "AWS EC2 API", "Maven", "SBT", "Spacewalk", "Jenkins", "Bamboo", "Jira", "Confluence", "Stash", "SonarQube", "Sonatype Nexus"],
              datasets: [
@@ -500,7 +500,7 @@
          }
          var devtoolsCtx = $("#devtoolsChart").get(0).getContext("2d");
          var devtoolsChart = new Chart(devtoolsCtx).Radar(devtoolsData, radarOptions);
-         
+
          var testingtoolsData = {
              labels: ["JUnit", "TestNG", "Mockito/Easymock", "Selenium", "Gatling", "JMeter"],
              datasets: [
@@ -518,7 +518,7 @@
          }
          var testingtoolsCtx = $("#testingtoolsChart").get(0).getContext("2d");
          var testingtoolsChart = new Chart(testingtoolsCtx).Radar(testingtoolsData, radarOptions);
-         
+
          var supervisionData = {
              labels: ["ELK", "Splunk", "Collectd/Graphite/Grafana", "Nagios/Shinken/Thruk"],
              datasets: [
@@ -536,7 +536,7 @@
          }
          var supervisionCtx = $("#supervisionChart").get(0).getContext("2d");
          var supervisionChart = new Chart(supervisionCtx).Radar(supervisionData, radarOptions);
-         
+
          var osData = {
              labels: ["CentOS/Redhat 6/7", "Ubuntu 14", "Solaris", "Windows 7", "MacOs X"],
              datasets: [
@@ -563,10 +563,10 @@
       <script type="text/javascript">
          // create a handlebars template
          var timeline_template = Handlebars.compile(document.getElementById('item-template').innerHTML);
-         
+
          // DOM element where the Timeline will be attached
          var timeline_container = document.getElementById('timeline');
-         
+
          var timeline_groups = [
            {
            id: 1,
@@ -585,7 +585,7 @@
            content: 'Formations'
            }
          ]
-         
+
          // Create a DataSet (allows two way data-binding)
          var timeline_items = new vis.DataSet([
            {
@@ -733,12 +733,12 @@
                group: 4
            },
          ]);
-         
+
          function customOrder (a,b) {
            // order by id
            return a.id - b.id;
          }
-         
+
          // Configuration for the Timeline
          var timeline_options = {
            order: customOrder,
@@ -749,12 +749,12 @@
            end: moment().endOf('year'),
            margin: {item: {horizontal: 0}}
          };
-         
+
          var timeline = new vis.Timeline(timeline_container);
          timeline.setOptions(timeline_options);
          timeline.setGroups(timeline_groups);
          timeline.setItems(timeline_items);
-         
+
          $(document).ready(function() {
            $('#timeline .item.range,#timeline .item.point').each(function() {
                $(this).qtip({
