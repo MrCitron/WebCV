@@ -3,8 +3,8 @@
    <head>
       <meta http-equiv="content-type" content="text/html; charset=utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content="WebCV Metin OSMAN" />
-      <meta name="keywords" content="CV,Metin OSMAN,IT Consultant" />
+      <meta name="description" content="Metin OSMAN" />
+      <meta name="keywords" content="CV,Metin OSMAN,IT Consultant,Software Engineer,Architect,Manager,Devops,Scrum Master" />
       <meta name="author" content="Metin OSMAN" />
       <link rel="shortcut icon" href="favicon.ico" />
       <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,600italic" />
@@ -27,7 +27,7 @@
       <div class="cbp-af-header">
          <div class="cbp-af-inner">
             <a href="#">
-               <h1><strong>Metin OSMAN</strong><br />Consultant IT</h1>
+               <h1><strong>Metin OSMAN</strong><br />Building Software</h1>
             </a>
             <nav class="clearfix">
                <a href="#about-link">Présentation</a>
@@ -51,9 +51,9 @@
       <div id="about" class="wrap">
          <img class="circle right" src="img/metinosman.jpg" alt="Metin OSMAN" width="30%" />
          <p class="orange"><strong>Bonjour,</strong></p>
-         <p>Ing&eacute;nieur dipl&ocirc;mé de l'UTBM,  je suis sp&eacute;cialis&eacute; autour des technologies Java/JEE, de la conception applicative jusqu'&agrave; la mise en production, en passant par le suivi de projet et la r&eacute;alisation &agrave; proprement dite des applications.</p>
-         <p>Durant ces 10 dernières ann&eacute;es, j'ai eu l'occasion de participer à de nombreux projets, d'abord sur des applications Front, et plus r&eacute;cemment sur des middle-office grands publics avec de fortes contraintes en terme de QOS.<br /> Aujourd'hui, je travaille en tant qu'architecte dans le service VOD de Canal+.</p>
-         <p>Je suis passionn&eacute; de musique (toutes les musiques) et je joue de la guitare depuis 20 ans.</p>
+         <p>Durant ces 12 dernières ann&eacute;es, j'ai eu l'occasion de participer à de nombreux projets IT, d'abord sur des applications Front, et plus r&eacute;cemment sur des middle-office alimentant des applications grands publics avec de fortes contraintes en terme de QOS.</p>
+         <p>Parfois d&eacute;veloppeur ou lead dev, quelques fois chef de projet ou Scrum Master, toujours "DevOps", je travaille aujourd'hui en tant qu'architecte et manager IT chez Canal+.</p>
+         <p>Je suis passionn&eacute; de musique (je joue de la guitare depuis 20 ans), je fais du foot à l'occasion et vous pouvez me croiser sur Quake Live ou Counter Strike régulièrement.</p>
          <p>Enfin et surtout, j'ai la chance d'être le papa de deux merveilleux enfants !</p>
          <p class="signature orange">Metin</p>
       </div>
@@ -393,7 +393,7 @@
          }
 
          var rolesData = {
-             labels: ["Architecte applicatif", "Scrum master", "Lead Tech", "Chef de projet", "Intégrateur", "Développeur", "DevOps"],
+             labels: ["Manager IT", "Architecte applicatif", "Scrum master", "Lead Tech", "Chef de projet", "Intégrateur", "Développeur", "DevOps"],
              datasets: [
                  {
                      label: "Rôles",
@@ -403,7 +403,7 @@
                      pointStrokeColor: "#fff",
                      pointHighlightFill: "#fff",
                      pointHighlightStroke: "rgba(151,187,205,1)",
-                     data: [90, 70, 50, 30, 30, 60, 90]
+                     data: [70, 90, 70, 50, 30, 30, 60, 90]
                  }
              ]
          }
@@ -411,7 +411,7 @@
          var rolesChart = new Chart(rolesCtx).Radar(rolesData, radarOptions);
 
          var languagesData = {
-             labels: ["Java", "Scala", "Groovy", "Javascript", "C#", "SQL", "Python", "Bash", "CSS", "HTML", "XML", "XSD", "XSLT", "YAML"],
+             labels: ["Java", "Scala", "Groovy", "Javascript", "C#", "SQL", "Python", "Bash", "Golang"],
              datasets: [
                  {
                      label: "Languages",
@@ -421,7 +421,7 @@
                      pointStrokeColor: "#fff",
                      pointHighlightFill: "#fff",
                      pointHighlightStroke: "rgba(151,187,205,1)",
-                     data: [90, 50, 20, 70, 20, 30, 30, 60, 25, 80, 90, 80, 20, 50]
+                     data: [90, 50, 20, 70, 20, 30, 40, 60, 25]
                  }
              ]
          }
@@ -429,7 +429,7 @@
          var languagesChart = new Chart(languagesCtx).Radar(languagesData, radarOptions);
 
          var frontData = {
-             labels: ["JSF", "HTML5/JS", "Play", "Grails"],
+             labels: ["JSF", "HTML5/JS", "Play", "Grails", "Angular 2"],
              datasets: [
                  {
                      label: "Front technologies",
@@ -439,7 +439,7 @@
                      pointStrokeColor: "#fff",
                      pointHighlightFill: "#fff",
                      pointHighlightStroke: "rgba(151,187,205,1)",
-                     data: [30, 40, 30, 20]
+                     data: [30, 40, 30, 20, 20]
                  }
              ]
          }
@@ -447,7 +447,7 @@
          var frontChart = new Chart(frontCtx).Radar(frontData, radarOptions);
 
          var middleData = {
-             labels: ["Java EE", "Spring", "Jersey", "IBatis", "Dozer", "Log4j", "Apache Commons", "Play", "Websphere", "Weskillsic", "JBoss", "Tomcat"],
+             labels: ["Java EE", "Spring", "Jersey", "IBatis", "Dozer", "Log4j", "Apache Commons", "Play", "Websphere", "JBoss", "Tomcat"],
              datasets: [
                  {
                      label: "Middlewares",
@@ -457,7 +457,7 @@
                      pointStrokeColor: "#fff",
                      pointHighlightFill: "#fff",
                      pointHighlightStroke: "rgba(151,187,205,1)",
-                     data: [90, 70, 30, 30, 50, 60, 30, 30, 10, 20, 50, 70]
+                     data: [90, 70, 30, 30, 50, 60, 30, 50, 10, 50, 70]
                  }
              ]
          }
@@ -465,7 +465,7 @@
          var middleChart = new Chart(middleCtx).Radar(middleData, radarOptions);
 
          var datastoresData = {
-             labels: ["Redis", "Memcached", "SolR", "Elastic Search", "Cassandra", "MongoDB", "Oracle", "MySQL", "Postgre", "MS SQL Server", "MS Access"],
+             labels: ["Redis", "Memcached", "SolR", "Elastic Search", "Cassandra", "MongoDB", "Oracle", "MySQL", "Postgre"],
              datasets: [
                  {
                      label: "Datastores",
@@ -475,7 +475,7 @@
                      pointStrokeColor: "#fff",
                      pointHighlightFill: "#fff",
                      pointHighlightStroke: "rgba(151,187,205,1)",
-                     data: [70, 30, 50, 60, 50, 10, 70, 70, 40, 20, 20]
+                     data: [70, 30, 50, 60, 50, 30, 70, 70, 60]
                  }
              ]
          }
@@ -484,7 +484,7 @@
 
 
          var devtoolsData = {
-             labels: ["SaltStack", "AWS EC2 API", "Maven", "SBT", "Spacewalk", "Jenkins", "Bamboo", "Jira", "Confluence", "Stash", "SonarQube", "Sonatype Nexus"],
+             labels: ["Docker", "SaltStack", "AWS", "Maven", "SBT", "Jenkins", "Github", "Jira", "Confluence", "Bitbucket", "SonarQube", "Sonatype Nexus"],
              datasets: [
                  {
                      label: "Dev tools",
@@ -494,7 +494,7 @@
                      pointStrokeColor: "#fff",
                      pointHighlightFill: "#fff",
                      pointHighlightStroke: "rgba(151,187,205,1)",
-                     data: [70, 50, 70, 30, 50, 80, 80, 90, 90, 90, 50, 70]
+                     data: [80, 80, 70, 60, 40, 90, 90, 90, 90, 90, 50, 70]
                  }
              ]
          }
@@ -502,7 +502,7 @@
          var devtoolsChart = new Chart(devtoolsCtx).Radar(devtoolsData, radarOptions);
 
          var testingtoolsData = {
-             labels: ["JUnit", "TestNG", "Mockito/Easymock", "Selenium", "Gatling", "JMeter"],
+             labels: ["Spec2", "ScalaTest", "JUnit", "TestNG", "Mockito/Easymock", "Selenium", "Gatling", "JMeter"],
              datasets: [
                  {
                      label: "Testing tools",
@@ -512,7 +512,7 @@
                      pointStrokeColor: "#fff",
                      pointHighlightFill: "#fff",
                      pointHighlightStroke: "rgba(151,187,205,1)",
-                     data: [60, 50, 50, 20, 30, 60]
+                     data: [50, 40, 60, 50, 50, 20, 30, 30]
                  }
              ]
          }
@@ -538,7 +538,7 @@
          var supervisionChart = new Chart(supervisionCtx).Radar(supervisionData, radarOptions);
 
          var osData = {
-             labels: ["CentOS/Redhat 6/7", "Ubuntu 14", "Solaris", "Windows 7", "MacOs X"],
+             labels: ["CentOS/Redhat 7", "Ubuntu", "Solaris", "Windows 7+", "MacOs X"],
              datasets: [
                  {
                      label: "OS",
@@ -548,7 +548,7 @@
                      pointStrokeColor: "#fff",
                      pointHighlightFill: "#fff",
                      pointHighlightStroke: "rgba(151,187,205,1)",
-                     data: [80, 60, 10, 80, 60]
+                     data: [80, 60, 10, 60, 80]
                  }
              ]
          }
