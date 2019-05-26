@@ -89,16 +89,17 @@
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="profile-wrapper wow fadeInRight">
               <h3>Welcome</h3>
-              <p>I have been developing softwares since I was 10 doing simple applications like a DOS shell program for helping kids learning their multiplication tables, or a more complex one like a companion application to help mastering <a href="https://en.wikipedia.org/wiki/Rolemaster">Rolemaster</a> games.</p>
-              <p>Today, I am a software engineer based in Paris Area. I have been working as a developer, project lead, team lead, devops, scrum master, software architect, ... and now I am the CTO at <a href="https://www.mixdata.com">Mixdata</a>.</p>
-              <p>I like (punk) music, playing video and board games, travelling and spending time just looking at my children growing.</p>
-              <p>If you want to reach me, feel free to drop an <a href="mailto:mail@metinosman.com">email</a> or to ping me on <a href="https://twitter.com/mrcitron">twitter</a> or <a href="https://www.linkedin.com/in/metinosman">linkedin</a>.</p>
+              <p>I have been developing softwares since I was 10 doing simple applications like a shell program for helping kids learning their computation tables, or more complex one like a companion application for <a href="https://en.wikipedia.org/wiki/Rolemaster">Rolemaster</a> to help me mastering games.</p>
+              <p>Today, I am a software engineer based in Paris Area. I have been working as a developper, project lead, team lead, devops, scrum master, software architect, ... and now I am the CTO at <a href="https://www.mixdata.com">Mixdata</a>.</p>
+              <p>I like (punk) music, playing video and board games, travelling from time to time and spending time just looking at my children growing.</p>
+              <p>If you wan't to reach me, feel free to drop me an <a href="mailto:mail@metinosman.com">email</a> or to ping me on <a href="https://twitter.com/mrcitron">twitter</a> or <a href="https://www.linkedin.com/in/metinosman">linkedin</a>.</p>
               <div class="about-profile">
                 <ul class="admin-profile">
                   <li><span class="pro-title"> Name </span> <span class="pro-detail">Metin OSMAN</span></li>
                   <li><span class="pro-title"> Experience </span> <span class="pro-detail">14 years as a software engineer</span></li>
                   <li><span class="pro-title"> Current Position </span> <span class="pro-detail">CTO at Mixdata</span></li>
                   <li><span class="pro-title"> Location </span> <span class="pro-detail">Paris Area, France</span></li>
+                  <li><span class="pro-title"> Complete Resume </span> <span class="pro-detail"><div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="light" data-vanity="metinosman"><a class="LI-simple-link" href='https://fr.linkedin.com/in/metinosman?trk=profile-badge'>Metin OSMAN</a></div></span></li>
                 </ul>
               </div>
             </div>
@@ -244,6 +245,10 @@
       </div>
     </div>
     <!-- Resume Section End -->
+
+    <div class="container">
+      <div id="instafeed"></div>
+    </div>
     
     <!-- Footer Section Start -->
     <footer class="footer-area section-padding">
@@ -285,6 +290,17 @@
     <script type="text/javascript" src="assets/js/main.js"></script>
     <script type="text/javascript" src="assets/js/form-validator.min.js"></script>
     <script type="text/javascript" src="assets/js/contact-form-script.min.js"></script>
+    <script type="text/javascript" src="assets/js/instafeed.min.js"></script>
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+    <script type="text/javascript">
+      var feed = new Instafeed({
+          get: 'user',
+          userId: '239734347',
+          accessToken: '239734347.9f422cf.8804d6d43cca424498e74ec656db4311'
+      });
+      feed.run();
+  </script>
       
   </body>
 </html>

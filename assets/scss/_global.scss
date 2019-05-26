@@ -1,0 +1,281 @@
+
+// Font Family
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light|Source+Sans+Pro:400,700');
+html{
+  overflow-x: hidden;
+}
+body {
+    background: #fff;
+    font-size: 14px;
+    font-weight: $regular;
+    font-family: $primary-font;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    color: #666;
+    line-height: 25px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow-x: hidden;
+}
+h1, h2, h3, h4{
+  font-size: 38px;
+  font-weight: $bold;
+  font-family: $primary-font;
+}
+.script-font{font-family: 'Shadows Into Light', cursive;}
+a{
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+	&:hover{text-decoration: none;}
+	a:focus{
+	outline: none;
+	}
+}
+p{
+  font-weight: $regular;
+  font-family: $primary-font;
+  margin: 0px;
+  font-size: 14px;
+}
+ul,ol{
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+  li{
+    list-style: none;
+  }
+}
+.hero-heading {
+	font-size: 48px;
+	font-weight: $bold;
+	color: #fff;
+	text-transform: capitalize;
+	line-height: 70px;
+	letter-spacing: 0.1rem;
+}
+.hero-sub-heading {
+	font-size: 20px;
+	font-weight: $regular;
+	color: darken(#fff, 10%);
+	line-height: 45px;
+	letter-spacing: 0.1rem;
+}
+.section-titile-bg {
+    display: inline;
+    font-size: 115px;
+    font-weight: $bold;
+    height: 100%;
+    left: -173px;
+    opacity: 0.1;
+    position: absolute;
+    top: -14px;
+    width: 100%;
+    text-align: center;
+}
+.section-title-header{
+  p{
+    text: center;
+    font-weight: $regular;
+    line-height: 26px;
+    padding-bottom: 36px;
+  }
+}
+.section-title {
+    color: #252525;
+    font-size: 38px;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 48px;
+    padding: 0 10px;
+    position: relative;
+}
+$transition: all 0.3s ease-in-out;
+@mixin pricing-box-shadow {
+  -webkit-box-shadow: 0px 2px 10px 2px rgba(221,221,221,0.73);
+  -moz-box-shadow: 0px 2px 10px 2px rgba(221,221,221,0.73);
+  box-shadow: 0px 2px 10px 2px rgba(221,221,221,0.73);
+}
+@mixin icon-shadow {
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
+}
+@mixin team-box-shadow {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
+}
+@mixin team-box-shadow-hover {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.46);
+}
+@mixin blog-box-shadow {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
+}
+@mixin button-shadow {
+  box-shadow: 0 2px 2.7px 0.1px rgba(0, 0, 0, 0.24) !important;
+}
+@mixin button-shadow-hover {
+  box-shadow: 0 4px 4.7px .3px rgba(0,0,0,.24) !important;
+}
+
+//Bootstrap Button Core
+.btn{
+  font-size: 14px;
+  padding: 10px 30px;
+  border-radius: 0px;
+  cursor: pointer;
+  font-weight: $regular;
+  color: #fff;
+  border-radius: 4px;
+  text-transform: uppercase;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  display: inline-block;
+}
+.btn:focus,
+.btn:active{
+  box-shadow: none;
+  outline: none;
+  color: #fff;
+}
+.btn-common{
+  background-color: $preset;
+  position: relative;
+  z-index: 1;
+  &:hover{
+    color: #fff;
+    background-color: #21cff3;
+    box-shadow:  0 6px 22px rgba(0,0,0,0.1);
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+  }
+}
+
+.btn-danger:hover{
+  background-color: #f55262;
+  border-color: #f55262;
+  box-shadow:  0 6px 22px rgba(0,0,0,0.1);
+  transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+}
+
+.btn-border{
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff;
+  &:hover{
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+.btn-lg{
+  padding: 14px 33px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.btn-rm{
+  padding: 7px 10px;
+  text-transform: capitalize;
+}
+button:focus{
+  outline: none!important;
+}
+.icon-close,.icon-check{
+  color: $preset;
+}
+.social-icon{
+  li{
+    display: inline-block;
+    a{  
+      color: #000;
+      background: #fff;
+      width: 35px;
+      height: 35px;
+      line-height: 38px;
+      display: block;
+      text-align: center;
+      border-radius: 100%;
+      font-size: 16px;
+      margin: 15px 6px 12px 6px;
+      transition: all 0.3s ease-in-out 0s;
+        -moz-transition: all 0.3s ease-in-out 0s;
+        -webkit-transition: all 0.3s ease-in-out 0s;
+        -o-transition: all 0.3s ease-in-out 0s;
+      &:hover{
+        color: #fff;
+      }
+    }
+    .facebook:hover{
+      background: #3b5999;
+    }
+    .twitter:hover{
+      background: #4A9CEC;
+    }
+    .instagram:hover{
+      background: #D6274D;
+    }
+    .linkedin:hover{
+      background: #1260A2;
+    }
+    .google:hover{
+      background: #CE332A;
+    }
+  }
+}
+/* ScrollToTop */
+a.back-to-top{
+  display: none;
+  position: fixed;
+  bottom: 18px;
+  right: 15px;
+  text-decoration: none;
+  i {
+  	display: block;
+	  font-size: 22px;
+	  width: 40px;
+	  height: 40px;
+	  line-height: 40px;
+	  color: #fff;
+    background: $preset;
+	  border-radius: 2px;
+	  text-align: center;
+	  transition: all 0.2s ease-in-out;
+	  -moz-transition: all 0.2s ease-in-out;
+	  -webkit-transition: all 0.2s ease-in-out;
+	  -o-transition: all 0.2s ease-in-out;
+	  @include icon-shadow;
+	}
+	&:hover , &:focus {
+		text-decoration: none;
+	}
+}
+// Preloader Styles
+#loader {
+  position: fixed;
+  background: #fff;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999999;
+}
+.square-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+}
+.square-spin img {
+  max-width: 64px;
+}
+//Helper Classes
+.section-padding {
+	padding: 60px 0;
+}

@@ -1,0 +1,151 @@
+#about{
+	.img-thumb{
+		img{
+			border: 8px solid #fff;
+    		box-shadow: 0px 0px 30px rgba(0,0,0,0.2);
+		}
+	}
+}
+.profile-wrapper{
+	padding: 45px;
+	.btn{
+		margin: 10px 10px 0px 0px;
+		i{
+			vertical-align: middle;
+			margin-right: 5px;
+		}
+	}
+}
+.about-profile{
+	position: relative;
+	margin: 20px 0 20px 0;
+	.pro-title{
+		font-weight: 700;
+		color: #040404;
+		position: relative;
+		width: 130px;
+		display: inline-block;
+		margin-bottom: 5px;
+		&:after{
+			position: absolute;
+			content: ':';
+			color: #040404;
+			font-size: 14px;
+			left: 108px;
+		}
+	}
+	.admin-sign{
+		position: absolute;
+		right: 45px;
+		bottom: 10px;
+	}
+}
+// Counter Section
+.counter-section{
+    background: url(../img/background/bg-1.jpg);
+    overflow: hidden;
+    position: relative;
+    &:before{
+    	content: '';
+    	position: absolute;
+    	top: 0;
+    	bottom: 0;
+    	width: 100%;
+    	height: 100%;
+    	background: rgba(0, 0, 0, 0.5);
+    }
+	.counter {
+		padding: 30px 0;
+		.icon{
+			margin-bottom: 30px;
+			i{
+			    font-size: 48px;
+			    color: $preset;
+			}
+		}
+		p{
+			font-size: 18px;
+			text-transform: uppercase;
+		    color: #fff;
+		    font-weight: 400;
+		    letter-spacing: 1px;
+		    margin: 30px 0;
+		}
+		.counterUp{
+			color: #fff;
+			font-size: 42px;
+			margin-top: 15px;
+			font-weight: $bold;
+		}
+	}
+}
+
+/* Resume */
+.timeline{
+	position: relative;
+	.timelin-title{
+		font-size: 20px;
+		text-transform: uppercase;
+		margin-left: 25px;
+	}
+	li{
+	    padding: 0 20px 20px 30px;
+	    list-style: none;
+	    border-left: 2px solid #f1f1f1;
+	    .content-text{
+	    	background: #f2f2f2;
+	    	padding: 20px;
+	    }
+		.line-title{
+			font-size: 16px;
+			line-height: 6px;
+		}
+		span{
+			font-size: 12px;
+			padding: 9px 0;
+			display: block;
+		}
+		.line-text{
+			color: #888;
+			line-height: 18px;
+		}
+	}
+}
+.timeline li:first-child:before {
+    border: 0;
+    background: none;
+    position: relative;
+}
+.timeline li:last-child {
+    padding: 0 20px 0px 30px;
+}
+.timeline li:before{
+    content: "";
+    border: solid 2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    font-size: 8px;
+    margin-left: -35px;
+    font-weight: 400;
+    background: #fff;
+    display: block;
+    position: absolute;
+    margin-top: 18px;
+    border-color: #00b4d9 !important;
+}
+.timeline li:first-child i {
+	font-size: 20px;
+    float: left;
+    margin-left: -30px;
+    line-height: 50px;
+    border-radius: 30px;
+    margin: -12px -55px;
+    background: $preset;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
