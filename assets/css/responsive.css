@@ -13,6 +13,9 @@
   .services-item .services-content h3 a {
     font-size: 14px;
   }
+  .timeline li .line-title {
+    line-height: 20px;
+  }
 }
 
 /* tablets */
@@ -26,6 +29,9 @@
   }
   .services-item {
     margin-bottom: 20px;
+  }
+  .timeline li .line-title {
+    line-height: 20px;
   }
 }
 
@@ -43,6 +49,9 @@
   }
   .counter-section .counter p {
     font-size: 14px;
+  }
+  .timeline li .line-title {
+    line-height: 20px;
   }
 }
 
