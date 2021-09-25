@@ -44,7 +44,7 @@ a a:focus {
 p {
   font-weight: 400;
   font-family: "Source Sans Pro", sans-serif;
-  margin: 0px;
+  margin: 0 0 10px;
   font-size: 14px;
 }
 
