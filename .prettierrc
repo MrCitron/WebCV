@@ -1,0 +1,12 @@
+{
+  "singleQuote": true,
+  "printWidth": 200,
+  "overrides": [
+    {
+      "files": ["**/*.html"],
+      "options": {
+        "printWidth": 200
+      }
+    }
+  ]
+}
