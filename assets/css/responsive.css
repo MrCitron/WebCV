@@ -1,14 +1,8 @@
-/* large desktops */
-@media (min-width: 1600px) {
-  .hero-area-bg {
-    background-position-y: -500px;
-  }
-}
-
 /* only small desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
   #hero-area .contents .head-title {
     font-size: 40px;
+    margin-right: -8px;
   }
   .services-item .services-content h3 a {
     font-size: 14px;
@@ -53,6 +47,10 @@
   .timeline li .line-title {
     line-height: 20px;
   }
+  #hero-area .contents .head-title {
+    font-size: 26px;
+    margin-right: -6px;
+  }
 }
 
 /* mobile or only mobile */
@@ -68,10 +66,11 @@
     margin: 5px 0;
   }
   #hero-area .contents {
-    padding: 100px 0px 60px 0px;
+    padding: 10px 0px 60px 0px;
   }
   #hero-area .contents .head-title {
     font-size: 22px;
+    margin-right: -5px;
   }
   #hero-area .contents h5 {
     font-size: 32px;
