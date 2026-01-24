@@ -72,15 +72,15 @@ source ${TARGET_DIR}/rc_extensions/${machine}/rvm.sh
 EOF
 
 ## Add current user as sudoer with nopasswd
-if [ "${machine}" = "Linux" ];
-then
-    sudo bash -c "cat << EOF > /etc/sudoers.d/$USER
-$USER ALL=(ALL) NOPASSWD: ALL
-EOF
-chmod 0440 /etc/sudoers.d/$USER
-visudo -c
-"
-fi
+# if [ "${machine}" = "Linux" ];
+# then
+#     sudo bash -c "cat << EOF > /etc/sudoers.d/$USER
+# $USER ALL=(ALL) NOPASSWD: ALL
+# EOF
+# chmod 0440 /etc/sudoers.d/$USER
+# visudo -c
+# "
+# fi
 
 ## Useful packages
 if [ "${machine}" = "Mac" ];
@@ -90,18 +90,18 @@ else
     info Update system and install useful packages
     sudo apt-get -qq  update
     sudo apt-get -qqy upgrade
-    sudo apt-get -qqy install vim net-tools zip unzip docker.io mlocate jq
+    sudo apt-get -qqy install vim net-tools zip unzip docker.io jq
     # Docker
     sudo usermod -aG docker $USER
     
     # Test if there is a GUI
     #ls /usr/share/xsessions/ &> /dev/null
-    if [ x$DISPLAY != x ];
-    then
-        sudo apt-get -qqy install terminator meld
-        sudo snap install code --classic
-        sudo snap install intellij-idea-ultimate --classic
-    fi
+    # if [ x$DISPLAY != x ];
+    # then
+    #     sudo apt-get -qqy install terminator meld
+    #     sudo snap install code --classic
+    #     sudo snap install intellij-idea-ultimate --classic
+    # fi
 fi
 
 ## Install bash_it
@@ -161,7 +161,7 @@ fi
 if ! command -v nvm &> /dev/null;
 then
     info Installing nvm
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | PROFILE='/dev/null' bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | PROFILE='/dev/null' bash
 fi
 
 ## Install rvm
