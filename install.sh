@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+### This script is used to install dotfiles on a new system
+### It will install useful packages, setup bash_it, setup gcloud, kubectl, krew, nvm, rvm
+### It will also setup the environment for the user
+### It will be copied to WebCV repo and should be run with the command:
+### curl -s https://www.metinosman.com/install.sh | bash
+
 set -e
 
 GREEN='\033[0;32m'
@@ -24,6 +30,20 @@ then
     info Creating base directories
     mkdir -p ~/devhome/projects/perso
     mkdir -p ~/devhome/apps
+fi
+
+# Check git is installed
+if ! command -v git &> /dev/null;
+then
+    info Installing git
+    sudo apt -qqy install git
+fi
+
+# Set global git config
+if [ ! -f ~/.gitconfig ];
+then
+    git config --global user.name "Metin OSMAN"
+    git config --global user.email "4737770+MrCitron@users.noreply.github.com"
 fi
 
 # Clone or update the dotfiles repository
@@ -71,17 +91,6 @@ source ${TARGET_DIR}/rc_extensions/${machine}/gcp.sh
 source ${TARGET_DIR}/rc_extensions/${machine}/rvm.sh
 EOF
 
-## Add current user as sudoer with nopasswd
-# if [ "${machine}" = "Linux" ];
-# then
-#     sudo bash -c "cat << EOF > /etc/sudoers.d/$USER
-# $USER ALL=(ALL) NOPASSWD: ALL
-# EOF
-# chmod 0440 /etc/sudoers.d/$USER
-# visudo -c
-# "
-# fi
-
 ## Useful packages
 if [ "${machine}" = "Mac" ];
 then
@@ -93,15 +102,6 @@ else
     sudo apt-get -qqy install vim net-tools zip unzip docker.io jq
     # Docker
     sudo usermod -aG docker $USER
-    
-    # Test if there is a GUI
-    #ls /usr/share/xsessions/ &> /dev/null
-    # if [ x$DISPLAY != x ];
-    # then
-    #     sudo apt-get -qqy install terminator meld
-    #     sudo snap install code --classic
-    #     sudo snap install intellij-idea-ultimate --classic
-    # fi
 fi
 
 ## Install bash_it
