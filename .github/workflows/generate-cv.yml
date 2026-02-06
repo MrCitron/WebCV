@@ -1,0 +1,83 @@
+name: Generate CV and Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'generator/resume.json'
+      - 'generator/generate.py'
+      - 'generator/templates/**'
+      - 'public/**'
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wkhtmltopdf
+          cd generator
+          pip install -r requirements.txt
+
+      - name: Generate French CV (anonymized)
+        env:
+          CI: "true"
+        run: |
+          cd generator
+          python3 generate.py resume.json --anonymize --pdf
+
+      - name: Generate English CV (anonymized)
+        env:
+          CI: "true"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          cd generator
+          if [ -n "${GEMINI_API_KEY}" ]; then
+            python3 generate.py resume.json --translate --anonymize --pdf
+          else
+            echo "GEMINI_API_KEY not set; skipping English CV generation"
+          fi
+
+      - name: Copy generated PDFs to public
+        run: |
+          cp generator/output/resume-fr.pdf public/resume-fr.pdf || echo "FR PDF not found"
+          cp generator/output/resume-en.pdf public/resume-en.pdf || echo "EN PDF not found"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

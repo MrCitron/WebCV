@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="UTF-8">
+<title>CV - {{ name }}</title>
+<style>
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #2c3e50; background: #f5f5f5;
+}
+
+.page {
+  width: 210mm; height: 297mm; background: #fff;
+  position: relative; margin: 0 auto;
+  display: flex;
+}
+
+/* ===== SIDEBAR ===== */
+.sb {
+  width: 65mm; background: linear-gradient(180deg, #1a2332 0%, #1e2d42 100%);
+  color: #dce6f0; padding: 6mm 4mm; display: flex; flex-direction: column;
+  gap: 2.5mm; flex-shrink: 0;
+}
+.sb .photo {
+  width: 28mm; height: 28mm; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,.25);
+  object-fit: cover; object-position: -20px center;
+  margin: 0 auto 2.5mm auto; display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+.sb h1 {
+  font-size: 16pt; font-weight: 800; color: #fff;
+  line-height: 1.1; letter-spacing: 0.5pt; text-align: center;
+}
+.sb .sub {
+  font-size: 7.5pt; color: #7eb3e0; line-height: 1.3;
+  margin-top: 1mm; text-align: center;
+}
+.sb hr { border: none; border-top: 1px solid rgba(255,255,255,.15); margin: 1mm 0; }
+.sb .st {
+  font-size: 6.5pt; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8pt; color: #5ba3d9; margin-bottom: 1mm;
+}
+.sb .ct span, .sb .ct a {
+  color: #b8cfe0; text-decoration: none; font-size: 6pt;
+  display: block; line-height: 1.4;
+}
+.sb .sg { margin-bottom: 1.5mm; }
+.sb .sg-n { font-size: 6pt; font-weight: 600; color: #5ba3d9; margin-bottom: 0.3mm; }
+.sb .sg-k { font-size: 5.5pt; color: #97b4cc; line-height: 1.3; }
+.sb .it { font-size: 5.5pt; line-height: 1.35; margin-bottom: 0.5mm; color: #c5d5e5; }
+.sb .it b { font-weight: 600; font-size: 6pt; color: #dce6f0; }
+.sb .it-s { color: #7ea8c8; font-size: 5pt; }
+
+/* ===== MAIN ===== */
+.mn { flex: 1; padding: 6mm 5mm; display: flex; flex-direction: column; }
+
+/* TL;DR Box */
+.tldr {
+  background: linear-gradient(135deg, #0277bd 0%, #01579b 100%);
+  color: #fff; padding: 4mm 5mm; border-radius: 3px;
+  margin-bottom: 5mm;
+  box-shadow: 0 2px 8px rgba(2,119,189,.25);
+}
+.tldr-title {
+  font-size: 10pt; font-weight: 800; letter-spacing: 1.5pt;
+  text-transform: uppercase; margin-bottom: 2.5mm;
+  color: #fff;
+}
+.tldr-text {
+  font-size: 7pt; line-height: 1.6; color: #e3f2fd;
+}
+
+/* Section Title */
+.sec-title {
+  font-size: 10pt; font-weight: 700; color: #1a2332;
+  margin-bottom: 4mm; padding-bottom: 1mm;
+  border-bottom: 2px solid #0277bd;
+}
+
+/* ===== PAGE 1: Synthèse par société ===== */
+.company-sum {
+  display: flex; gap: 3mm; margin-bottom: 4mm;
+  padding: 3mm 3.5mm; background: #f8fafb;
+  border-left: 4px solid; border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+
+.company-sum-logo {
+  flex-shrink: 0; width: 12mm; height: 12mm;
+  display: flex; align-items: center; justify-content: center;
+  margin-right: 1mm;
+}
+
+.company-sum-logo img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+}
+
+.company-sum-left {
+  flex-shrink: 0; width: 32mm;
+}
+
+.company-sum-name {
+  font-size: 8.5pt; font-weight: 700; color: #1a2332;
+  line-height: 1.1; margin-bottom: 0.8mm;
+}
+
+.company-sum-period {
+  font-size: 5.5pt; color: #7f8c8d; margin-bottom: 1mm;
+}
+
+.company-sum-dur {
+  display: inline-block; padding: 0.5mm 1.5mm;
+  background: #e8f4f8; border-radius: 2px;
+  font-size: 5.5pt; color: #0277bd; font-weight: 700;
+}
+
+.company-sum-right {
+  flex: 1;
+}
+
+.company-sum-roles {
+  font-size: 7pt; color: #2c3e50; font-weight: 600;
+  line-height: 1.4; margin-bottom: 1.5mm;
+}
+
+.company-sum-desc {
+  font-size: 6pt; color: #556; line-height: 1.5;
+}
+
+/* Couleurs entreprises */
+.c-sf { border-left-color: #0277bd; }
+.c-mx { border-left-color: #2e7d32; }
+.c-ca { border-left-color: #c62828; }
+.c-vi { border-left-color: #e65100; }
+.c-cg { border-left-color: #1565c0; }
+.c-ot { border-left-color: #7b1fa2; }
+
+/* ===== PAGE 2+: Détails expériences ===== */
+.exp-grp {
+  margin-bottom: 3.5mm;
+}
+
+.exp-grp-title {
+  font-size: 7.5pt; font-weight: 700; color: #fff;
+  background: #1a2332; padding: 1mm 2mm; margin-bottom: 1.5mm;
+  border-radius: 2px;
+}
+
+.exp {
+  position: relative; padding: 2mm 2.5mm 2mm 4mm;
+  background: #fff; border-left: 3px solid;
+  margin-bottom: 1.5mm; border-radius: 1px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+}
+
+.exp::before {
+  content: ''; position: absolute; left: -6px; top: 3mm;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #fff; border: 3px solid;
+}
+
+.exp-co {
+  font-size: 6.5pt; font-weight: 700; color: #1a2332;
+  line-height: 1.1;
+}
+.exp-mi {
+  font-size: 5.5pt; color: #7f8c8d; font-style: italic;
+  margin-top: 0.2mm;
+}
+.exp-ro {
+  font-size: 6pt; color: #2c3e50; font-weight: 600;
+  margin-top: 0.5mm;
+}
+.exp-dt {
+  font-size: 5pt; color: #95a5a6; margin-top: 0.3mm;
+  display: flex; align-items: center; gap: 1.5mm;
+}
+.exp-dur {
+  display: inline-block; padding: 0.3mm 1mm;
+  background: #e8f4f8; border-radius: 1.5px;
+  font-size: 4.5pt; color: #5a6c7d; font-weight: 600;
+}
+.exp-su {
+  font-size: 5pt; color: #556; line-height: 1.3;
+  margin-top: 0.5mm; font-style: italic;
+}
+.exp-hl {
+  font-size: 5pt; color: #445; line-height: 1.3;
+  margin-top: 0.5mm; padding: 0; list-style: none;
+}
+.exp-hl li {
+  padding-left: 2mm; position: relative; margin-bottom: 0.2mm;
+}
+.exp-hl li::before {
+  content: '›'; position: absolute; left: 0;
+  color: #999; font-style: normal;
+}
+.exp-env { color: #7f8c8d; font-size: 4.5pt; }
+
+/* Couleurs expériences */
+.exp.c-sf { border-left-color: #0277bd; }
+.exp.c-sf::before { border-color: #0277bd; }
+.exp.c-mx { border-left-color: #2e7d32; }
+.exp.c-mx::before { border-color: #2e7d32; }
+.exp.c-ca { border-left-color: #c62828; }
+.exp.c-ca::before { border-color: #c62828; }
+.exp.c-vi { border-left-color: #e65100; }
+.exp.c-vi::before { border-color: #e65100; }
+.exp.c-cg { border-left-color: #1565c0; }
+.exp.c-cg::before { border-color: #1565c0; }
+.exp.c-ot { border-left-color: #7b1fa2; }
+.exp.c-ot::before { border-color: #7b1fa2; }
+
+/* 2 colonnes pour page 2+ */
+.exp-cols {
+  display: flex; gap: 3mm;
+}
+.exp-col {
+  flex: 1;
+}
+
+/* Page number */
+.page-num {
+  position: absolute; bottom: 3mm; right: 5mm;
+  font-size: 5pt; color: #95a5a6;
+}
+</style>
+</head>
+<body>
+{{ content }}
+</body>
+</html>
