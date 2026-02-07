@@ -15,6 +15,11 @@ ENV/
 generator/output
 public/resume-*.pdf
 
+# Sensitive data (stored in private-data repo)
+generator/resume.json
+generator/resume.en.json
+generator/resume.en.hash
+
 # API keys
 generator/.env
 *.key

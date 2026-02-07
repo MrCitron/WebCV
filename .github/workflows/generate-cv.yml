@@ -31,6 +31,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Checkout private data
+        uses: actions/checkout@v4
+        with:
+          repository: mrcitron/private-data
+          token: ${{ secrets.PRIVATE_DATA_PAT }}
+          path: private-data
+
+      - name: Copy CV data to generator
+        run: |
+          cp private-data/cv/resume.json generator/resume.json
+          cp private-data/cv/resume.en.json generator/resume.en.json 2>/dev/null || true
+          cp private-data/cv/resume.en.hash generator/resume.en.hash 2>/dev/null || true
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
