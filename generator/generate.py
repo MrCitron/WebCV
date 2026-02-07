@@ -17,6 +17,12 @@ from typing import Dict, List, Optional, Tuple
 from string import Template
 
 try:
+    from playwright.sync_api import sync_playwright
+    PLAYWRIGHT_AVAILABLE = True
+except ImportError:
+    PLAYWRIGHT_AVAILABLE = False
+
+try:
     from google import genai
     GEMINI_AVAILABLE = True
 except ImportError:
@@ -51,9 +57,8 @@ TEMPLATES_DIR = SCRIPT_DIR / "templates"
 ASSETS_DIR = SCRIPT_DIR / "assets"
 LOGOS_DIR = ASSETS_DIR / "logos"
 
-# Use output/ for CI, output_local/ for local development
-IS_CI = os.getenv("CI", "").lower() == "true"
-OUTPUT_DIR = SCRIPT_DIR / ("output" if IS_CI else "output_local")
+# Use output/ for both CI and local development
+OUTPUT_DIR = SCRIPT_DIR / "output"
 
 # Company logo mapping (local files)
 COMPANY_LOGOS = {
@@ -216,10 +221,26 @@ def get_company_logo(company_name: str) -> str:
     """Get company logo path (relative)"""
     logo_path = COMPANY_LOGOS.get(company_name, "")
     if logo_path:
-        # Check if running in generator/output context or web root
-        # If generating HTML in output/, we need to go up one level to reach assets/
+        # Logos are in generator/assets/logos/
+        # HTML is in generator/output/
         return f"../{logo_path}"
     return ""
+
+
+def get_image_path(image_url: str) -> str:
+    """Convert image URL to local path if possible for Playwright/PDF"""
+    if not image_url:
+        return ""
+
+    # If it's the personal photo from metinosman.com, try to find it locally
+    if "metinosman.com/assets/img/about/about.png" in image_url:
+        # Path: WebCV/public/assets/img/about/about.png
+        # SCRIPT_DIR is WebCV/generator/
+        abs_path = SCRIPT_DIR.parent / "public/assets/img/about/about.png"
+        if abs_path.exists():
+            return f"file://{abs_path.absolute()}"
+
+    return image_url
 
 
 def get_company_color(company_name: str) -> str:
@@ -382,8 +403,10 @@ def render_sidebar(basics: Dict, skills: List[Dict], education: List[Dict],
 
     contact_html = "\n".join(contact_items)
 
+    image_path = get_image_path(basics.get('image', ''))
+
     sidebar = f'''<aside class="sb">
-  <img src="{basics.get('image', '')}" alt="{basics.get('name', '')}" class="photo">
+  <img src="{image_path}" alt="{basics.get('name', '')}" class="photo">
   <div>
     <h1>{basics.get('name', '').replace(' ', '<br>')}</h1>
     <div class="sub">{basics.get('label', '').replace(' / ', '<br>')}</div>
@@ -404,7 +427,7 @@ def render_sidebar(basics: Dict, skills: List[Dict], education: List[Dict],
     return sidebar
 
 
-def render_page_1(resume_data: Dict, anonymize: bool = False, lang: str = "fr") -> str:
+def render_page_1(resume_data: Dict, total_pages: int, anonymize: bool = False, lang: str = "fr") -> str:
     """Render page 1 with company summaries"""
     basics = resume_data.get("basics", {})
     work = resume_data.get("work", [])
@@ -453,19 +476,21 @@ def render_page_1(resume_data: Dict, anonymize: bool = False, lang: str = "fr") 
         duration = calculate_duration(earliest_start, latest_end or "", lang)
 
         company_summaries_html += f'''  <!-- {company} -->
-  <div class="company-sum {color}">
-    <div class="company-sum-logo">
-      <img src="{logo}" alt="{company}">
-    </div>
-    <div class="company-sum-left">
-      <div class="company-sum-name">{company}</div>
-      <div class="company-sum-period">{format_date(earliest_start, lang)} – {format_date(latest_end, lang)}</div>
-      <div class="company-sum-dur">{duration}</div>
-    </div>
-    <div class="company-sum-right">
-      <div class="company-sum-roles">{roles_str}</div>
-      <div class="company-sum-desc">
-        {description}
+  <div class="company-sum-wrap">
+    <div class="company-sum {color}">
+      <div class="company-sum-logo">
+        <img src="{logo}" alt="{company}">
+      </div>
+      <div class="company-sum-left">
+        <div class="company-sum-name">{company}</div>
+        <div class="company-sum-period">{format_date(earliest_start, lang)} – {format_date(latest_end, lang)}</div>
+        <div class="company-sum-dur">{duration}</div>
+      </div>
+      <div class="company-sum-right">
+        <div class="company-sum-roles">{roles_str}</div>
+        <div class="company-sum-desc">
+          {description}
+        </div>
       </div>
     </div>
   </div>
@@ -495,7 +520,7 @@ def render_page_1(resume_data: Dict, anonymize: bool = False, lang: str = "fr") 
 {company_summaries_html}
 </main>
 
-<div class="page-num">{lbl["page"]} 1</div>
+<div class="page-num">{lbl["page"]} 1 / {total_pages}</div>
 
 </div>
 '''
@@ -618,7 +643,7 @@ def render_experience_group(company: str, experiences: List[Dict], color: str,
     return exp_group_html
 
 
-def render_detail_pages(resume_data: Dict, anonymize: bool = False, lang: str = "fr") -> str:
+def render_detail_pages(resume_data: Dict, total_pages: int, anonymize: bool = False, lang: str = "fr") -> str:
     """Render detail pages (page 2+) with experiences"""
     basics = resume_data.get("basics", {})
     work = resume_data.get("work", [])
@@ -662,7 +687,7 @@ def render_detail_pages(resume_data: Dict, anonymize: bool = False, lang: str = 
 
 </main>
 
-<div class="page-num">{lbl["page"]} {page_num}</div>
+<div class="page-num">{lbl["page"]} {page_num} / {total_pages}</div>
 
 </div>
 
@@ -683,9 +708,14 @@ def generate_html(resume_data: Dict, anonymize: bool = False, lang: str = "fr") 
             work_entry["summary"] = anonymize_text(work_entry.get("summary", ""))
             work_entry["highlights"] = [anonymize_text(h) for h in work_entry.get("highlights", [])]
 
+    # Pre-calculate total pages
+    grouped_work = group_experiences_by_company(resume_data.get("work", []))
+    detail_pages_data = split_experiences_into_pages(grouped_work, anonymize, lang)
+    total_pages = 1 + len(detail_pages_data)
+
     # Generate pages
-    page_1 = render_page_1(resume_data, anonymize, lang)
-    detail_pages = render_detail_pages(resume_data, anonymize, lang)
+    page_1 = render_page_1(resume_data, total_pages, anonymize, lang)
+    detail_pages = render_detail_pages(resume_data, total_pages, anonymize, lang)
 
     # Load template
     template_file = TEMPLATES_DIR / "cv_template.html"
@@ -701,39 +731,34 @@ def generate_html(resume_data: Dict, anonymize: bool = False, lang: str = "fr") 
 
 
 def generate_pdf(html_file: Path, pdf_file: Path) -> bool:
-    """Generate PDF from HTML using wkhtmltopdf or weasyprint"""
-
-    # Try wkhtmltopdf first
-    if subprocess.run(['which', 'wkhtmltopdf'], capture_output=True).returncode == 0:
-        cmd = [
-            'wkhtmltopdf',
-            '--page-size', 'A4',
-            '--orientation', 'Portrait',
-            '--margin-top', '0',
-            '--margin-bottom', '0',
-            '--margin-left', '0',
-            '--margin-right', '0',
-            '--enable-local-file-access',
-            str(html_file),
-            str(pdf_file)
-        ]
-        result = subprocess.run(cmd, capture_output=True)
-        return result.returncode == 0
-
-    # Try weasyprint
-    try:
-        import weasyprint
-        html_content = html_file.read_text(encoding='utf-8')
-        doc = weasyprint.HTML(string=html_content, base_url=str(html_file.parent))
-        doc.write_pdf(str(pdf_file))
-        return True
-    except ImportError:
-        print("Warning: Neither wkhtmltopdf nor weasyprint available for PDF generation")
-        print("Install with: pip install weasyprint")
-        print("Or install wkhtmltopdf from https://wkhtmltopdf.org/")
+    """Generate PDF from HTML using Playwright"""
+    if not PLAYWRIGHT_AVAILABLE:
+        print("Error: playwright not installed. Install with: pip install playwright")
+        print("And install browsers: playwright install chromium")
         return False
+
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch()
+            page = browser.new_page()
+
+            # Load local HTML file
+            url = f"file://{html_file.absolute()}"
+            page.goto(url)
+
+            # Generate PDF
+            page.pdf(
+                path=str(pdf_file),
+                print_background=True,
+                prefer_css_page_size=True,
+                margin={"top": "0", "right": "0", "bottom": "0", "left": "0"}
+            )
+
+            browser.close()
+            return True
+
     except Exception as e:
-        print(f"Error generating PDF: {e}")
+        print(f"Error generating PDF with Playwright: {e}")
         return False
 
 
@@ -823,7 +848,8 @@ def main():
     else:
         # In CI, don't add -anonymous suffix (always anonymized anyway)
         # In local, add suffix to distinguish versions
-        suffix = "" if IS_CI else ("-anonymous" if args.anonymize else "")
+        is_ci = os.getenv("CI", "").lower() == "true"
+        suffix = "" if is_ci else ("-anonymous" if args.anonymize else "")
         output_file = OUTPUT_DIR / f"resume-{lang}{suffix}.html"
 
     # Write HTML output

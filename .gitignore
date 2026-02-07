@@ -12,7 +12,7 @@ ENV/
 .venv
 
 # Generated CVs locally (not pushed to git)
-generator/output_local/
+generator/output
 public/resume-*.pdf
 
 # API keys

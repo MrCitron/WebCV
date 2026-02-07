@@ -136,5 +136,5 @@ case $option in
 esac
 
 echo ""
-echo "✓ Done! Output files are in: output_local/"
-ls -lh output_local/
+echo "✓ Done! Output files are in: output/"
+ls -lh output/

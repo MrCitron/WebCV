@@ -5,9 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'generator/resume.json'
-      - 'generator/generate.py'
-      - 'generator/templates/**'
+      - 'generator/**'
       - 'public/**'
   workflow_dispatch:
 
@@ -17,8 +15,7 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -41,34 +38,38 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wkhtmltopdf
           cd generator
           pip install -r requirements.txt
+          playwright install chromium
 
       - name: Generate French CV (anonymized)
-        env:
-          CI: "true"
         run: |
           cd generator
           python3 generate.py resume.json --anonymize --pdf
 
-      - name: Generate English CV (anonymized)
+      - name: Generate English CV (from resume.en.json if exists)
+        id: generate-en-file
+        run: |
+          cd generator
+          if [ -f resume.en.json ]; then
+            python3 generate.py resume.en.json --anonymize --pdf --output output/resume-en.html
+            echo "generated=true" >> $GITHUB_OUTPUT
+          else
+            echo "generated=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate English CV (by translation if GEMINI_API_KEY exists)
+        if: steps.generate-en-file.outputs.generated == 'false' && env.GEMINI_API_KEY != ''
         env:
-          CI: "true"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           cd generator
-          if [ -n "${GEMINI_API_KEY}" ]; then
-            python3 generate.py resume.json --translate --anonymize --pdf
-          else
-            echo "GEMINI_API_KEY not set; skipping English CV generation"
-          fi
+          python3 generate.py resume.json --translate --anonymize --pdf
 
       - name: Copy generated PDFs to public
         run: |
-          cp generator/output/resume-fr.pdf public/resume-fr.pdf || echo "FR PDF not found"
-          cp generator/output/resume-en.pdf public/resume-en.pdf || echo "EN PDF not found"
+          cp generator/output/resume-fr.pdf public/metinosman-resume-fr.pdf || echo "FR PDF not found"
+          cp generator/output/resume-en.pdf public/metinosman-resume-en.pdf || echo "EN PDF not found"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
