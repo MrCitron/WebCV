@@ -451,7 +451,8 @@ def render_page_1(resume_data: Dict, total_pages: int, anonymize: bool = False, 
         all_ends = [exp["endDate"] for exp in experiences if exp.get("endDate")]
 
         earliest_start = min(all_starts) if all_starts else ""
-        latest_end = max(all_ends) if all_ends else ""
+        has_ongoing = any(not exp.get("endDate") for exp in experiences)
+        latest_end = "" if has_ongoing else (max(all_ends) if all_ends else "")
 
         roles = [exp["position"].split("(")[0].strip() for exp in experiences]
         roles_str = " • ".join(list(dict.fromkeys(roles)))
