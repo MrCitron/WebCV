@@ -798,7 +798,7 @@ def main():
         print(f"Error: Invalid JSON in '{args.input}': {e}")
         sys.exit(1)
 
-    lang = "fr"
+    lang = "en" if "en" in input_file.name.lower().replace('-', '.').replace('_', '.').split('.') else "fr"
 
     # Translate if requested
     if args.translate:
